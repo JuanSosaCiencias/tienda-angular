@@ -9,7 +9,7 @@ export class CategoryService {
   constructor() { }
 
   getCategories(){
-    // const is better than 'var' because of reach and it doesn't get reassignedx
+    // const is better than 'var' because of reach and it doesn't get reassigned
     const categories=   [
       new Category(1, 'Electronics', 'Tag1', 'Active'), 
       new Category(2, 'Frozen', 'Tag2', 'Inactive'),
