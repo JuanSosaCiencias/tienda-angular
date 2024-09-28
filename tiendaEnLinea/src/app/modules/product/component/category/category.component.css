@@ -1,14 +1,7 @@
 /* Estilos para el componente CategoryComponent */
 
-/* Centra la tabla */
-.table {
-    margin: 0 auto; 
-    margin-top: 10vh;
-}
-
 /* Estilos para las celdas de la tabla */
 .table th, .table td {
     font-size: 24px; 
     text-align: center;
 }
-  
