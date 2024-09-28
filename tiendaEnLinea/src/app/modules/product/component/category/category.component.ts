@@ -1,29 +1,54 @@
 import { Component } from '@angular/core';
 import { CategoryService } from '../../_service/category.service';
-import { CommonModule } from '@angular/common';  // Importa CommonModule para usar *ngFor
+import { CommonModule } from '@angular/common';  
+import { SharedModule, SwalMessages } from '../../../../shared/shared-module';
+import { FormBuilder, FormGroup } from '@angular/forms';  
+import { Category } from '../../_model/category';
+
+declare var $: any;
+
 
 @Component({
   selector: 'app-category',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, SharedModule],
   templateUrl: './category.component.html',
-  styleUrl: './category.component.css'
+  styleUrls: ['./category.component.css']  
 })
 export class CategoryComponent {
-
-  // Variable que almacena las categorías
   categories: any[] = [];
+  swal: SwalMessages = new SwalMessages(); // swal messages
+  form: FormGroup;  
 
-  // Nos da un constructor que debe tener una instancia del servicio (inyección)
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService, private formBuilder: FormBuilder) { 
+    this.form = this.formBuilder.group({
+      categoria: [""],
+      etiqueta: [""],
+    });
+  }
 
-  // Metodo que manda a llamar la funcion que hicimos antes del servicio  
   getCategories() {
     this.categories = this.categoryService.getCategories();
   }
 
-  // Método ngOnInit que se ejecuta cuando el componente se inicializa
   ngOnInit() {
-    this.getCategories();  // Llama al método getCategories para cargar las categorías al iniciar
+    this.getCategories();
   }
+
+  showModalForm() {
+    $("#modalForm").modal("show");
+  } 
+
+  hideModalForm() {
+    $("#modalForm").modal("hide");
+  }
+
+  onSubmit(){
+    let id = this.categories.length + 1;
+    let region = new Category(id, this.form.controls['categoria'].value!, this.form.controls['etiqueta'].value!, 'Activo');
+    this.categories.push(region);
+    this.swal.successMessage("La categoria ha sido registrada"); // show message
+    this.hideModalForm();
+  }
+
 }

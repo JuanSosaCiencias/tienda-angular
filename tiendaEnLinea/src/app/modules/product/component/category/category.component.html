@@ -3,6 +3,9 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
+          <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+            Nueva categoría
+          </button>
           <h4>Categorías</h4>
         </div>
         <div class="card-body">
@@ -29,3 +32,38 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="modalForm">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Categoría</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">  
+          <div class="mb-3">
+            <label for="categoria" class="form-label">Categoría <span class="input-required">*</span></label>
+            <input type="text" class="form-control" placeholder="Nombre de la categoría" formControlName="categoria">  
+          </div>
+
+          <div class="mb-3">
+            <label for="etiqueta" class="form-label">Etiqueta <span class="input-required">*</span></label>
+            <input type="text" class="form-control" placeholder="Código de la etiqueta" formControlName="etiqueta">  
+          </div>
+
+          <div class="form-button">
+            <button type="submit" class="btn btn-primary btn-save">Guardar</button>  
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
