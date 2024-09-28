@@ -33,7 +33,6 @@
   </div>
 </div>
 
-
 <div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="modalForm">
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
@@ -45,12 +44,20 @@
         <form [formGroup]="form" (ngSubmit)="onSubmit()">  
           <div class="mb-3">
             <label for="categoria" class="form-label">Categoría <span class="input-required">*</span></label>
-            <input type="text" class="form-control" placeholder="Nombre de la categoría" formControlName="categoria">  
+            <input type="text" class="form-control" placeholder="Nombre de la categoría" formControlName="categoria" [ngClass]="{'is-invalid': form.controls['categoria'].errors && submitted}">  
+            <!-- Mensaje de error para el campo categoria -->
+            @if (form.controls['categoria'].errors && submitted) {
+              <small class="input-error-message">Favor de ingresar un nombre de categoría válido</small>
+            }
           </div>
 
           <div class="mb-3">
             <label for="etiqueta" class="form-label">Etiqueta <span class="input-required">*</span></label>
-            <input type="text" class="form-control" placeholder="Código de la etiqueta" formControlName="etiqueta">  
+            <input type="text" class="form-control" placeholder="Código de la etiqueta" formControlName="etiqueta" [ngClass]="{'is-invalid': form.controls['etiqueta'].errors && submitted}">  
+            <!-- Mensaje de error para el campo etiqueta -->
+            @if (form.controls['etiqueta'].errors && submitted) {
+              <small class="input-error-message">Favor de ingresar un código de etiqueta válido</small>
+            }
           </div>
 
           <div class="form-button">
@@ -58,12 +65,6 @@
           </div>
         </form>
       </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-      </div>
     </div>
   </div>
 </div>
-
-

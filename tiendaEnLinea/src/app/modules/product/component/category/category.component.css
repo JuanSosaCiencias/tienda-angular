@@ -19,3 +19,7 @@
     width: 240px;
 }
 
+.input-error-message{
+ color: red;
+ margin: 4px;
+}

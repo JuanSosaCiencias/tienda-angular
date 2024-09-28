@@ -1,11 +1,12 @@
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from '@angular/common'; 
 import Swal from "sweetalert2";
 
 
 @NgModule({
-    imports: [FormsModule, ReactiveFormsModule],
-    exports: [FormsModule, ReactiveFormsModule],
+    imports: [FormsModule, ReactiveFormsModule, CommonModule],
+    exports: [FormsModule, ReactiveFormsModule, CommonModule],
 })
 export class SharedModule{}
 export class SwalMessages{
