@@ -1,24 +1,70 @@
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8">
-      <table class="table table-bordered table-striped table-sm mx-auto">
-        <thead class="thead-dark">
-          <tr>
-            <th>ID de categoria</th>
-            <th>Categoria</th>
-            <th>Etiqueta</th>
-            <th>Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let category of categories">
-            <td>{{ category.category_id }}</td>
-            <td>{{ category.category }}</td>
-            <td>{{ category.tag }}</td>
-            <td>{{ category.status }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+            Nueva categoría
+          </button>
+          <h4>Categorías</h4>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-sm mx-auto w-100 text-center">
+            <thead class="thead-dark">
+              <tr>
+                <th class="col-md-3">ID de categoría</th>
+                <th class="col-md-3">Categoría</th>
+                <th class="col-md-3">Etiqueta</th>
+                <th class="col-md-3">Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let category of categories">
+                <td class="col-md-3">{{ category.category_id }}</td>
+                <td class="col-md-3">{{ category.category }}</td>
+                <td class="col-md-3">{{ category.tag }}</td>
+                <td class="col-md-3">{{ category.status }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" data-bs-backdrop="static" id="modalForm">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Agregar Categoría</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">  
+          <div class="mb-3">
+            <label for="categoria" class="form-label">Categoría <span class="input-required">*</span></label>
+            <input type="text" class="form-control" placeholder="Nombre de la categoría" formControlName="categoria" [ngClass]="{'is-invalid': form.controls['categoria'].errors && submitted}">  
+            <!-- Mensaje de error para el campo categoria -->
+            @if (form.controls['categoria'].errors && submitted) {
+              <small class="input-error-message">Favor de ingresar un nombre de categoría válido</small>
+            }
+          </div>
+
+          <div class="mb-3">
+            <label for="etiqueta" class="form-label">Etiqueta <span class="input-required">*</span></label>
+            <input type="text" class="form-control" placeholder="Código de la etiqueta" formControlName="etiqueta" [ngClass]="{'is-invalid': form.controls['etiqueta'].errors && submitted}">  
+            <!-- Mensaje de error para el campo etiqueta -->
+            @if (form.controls['etiqueta'].errors && submitted) {
+              <small class="input-error-message">Favor de ingresar un código de etiqueta válido</small>
+            }
+          </div>
+
+          <div class="form-button">
+            <button type="submit" class="btn btn-primary btn-save">Guardar</button>  
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
