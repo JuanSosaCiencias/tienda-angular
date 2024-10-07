@@ -1,0 +1,4 @@
+*.dbeaver*
+*.project*
+*api
+/db
