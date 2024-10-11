@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Category } from '../_model/category';
+import { HttpClient } from '@angular/common/http';
+import { api_dwb_uri } from '../../../shared/api-dwb-uri';
+import { Observable } from 'rxjs/internal/Observable';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CategoryService {
+  private source = "/category";
+  constructor(private http: HttpClient) { }
 
-  constructor() { }
-
-  getCategories(){
-    // const is better than 'var' because of reach and it doesn't get reassigned
-    const categories=   [
-      new Category(1, 'Electrónicos', 'Etiqueta1', 'Activo'), 
-      new Category(2, 'Congelados', 'Etiqueta2', 'Activo'),
-      new Category(3, 'Papas', 'Etiqueta3', 'Inactivo')
-    ];
-
-    return categories;
+  getCategories(): Observable<any> {
+    return this.http.get(api_dwb_uri + this.source);
   }
+  
 }

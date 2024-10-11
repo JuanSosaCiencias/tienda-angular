@@ -23,3 +23,14 @@
  color: red;
  margin: 4px;
 }
+
+.img-loading{
+    width: 100px;
+    height: 100px;
+}
+
+.table-empty{
+    padding: 24px;
+  }
+  
+  

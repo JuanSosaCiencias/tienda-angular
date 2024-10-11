@@ -9,24 +9,38 @@
           <h4>Categorías</h4>
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-sm mx-auto w-100 text-center">
-            <thead class="thead-dark">
-              <tr>
-                <th class="col-md-3">ID de categoría</th>
-                <th class="col-md-3">Categoría</th>
-                <th class="col-md-3">Etiqueta</th>
-                <th class="col-md-3">Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let category of categories">
-                <td class="col-md-3">{{ category.category_id }}</td>
-                <td class="col-md-3">{{ category.category }}</td>
-                <td class="col-md-3">{{ category.tag }}</td>
-                <td class="col-md-3">{{ category.status }}</td>
-              </tr>
-            </tbody>
-          </table>
+
+          <!-- loading  -->
+
+          @if(loading) {
+            <div class="text-center" >
+              <img src="assets/loading.gif" class="img-loading" alt="">
+            </div>
+          }
+          @if(!loading && categories.length == 0){
+            <div class="text-center table-empty">
+                <h4>No cuentas con categorías registradas</h4>
+            </div>
+          }@else {
+            <table class="table table-bordered table-striped table-sm mx-auto w-100 text-center">
+              <thead class="thead-dark">
+                <tr>
+                  <th class="col-md-3">ID de categoría</th>
+                  <th class="col-md-3">Categoría</th>
+                  <th class="col-md-3">Etiqueta</th>
+                  <th class="col-md-3">Estado</th>
+                </tr>
+              </thead> 
+              <tbody>
+                  <tr *ngFor="let category of categories">
+                    <td class="col-md-3">{{ category.category_id }}</td>
+                    <td class="col-md-3">{{ category.category }}</td>
+                    <td class="col-md-3">{{ category.tag }}</td>
+                    <td class="col-md-3">{{ category.status }}</td>
+                  </tr> 
+              </tbody>
+            </table>
+          }
         </div>
       </div>
     </div>
