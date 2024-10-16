@@ -1,0 +1,14 @@
+<li class="nav-item">
+    <a 
+    (click)="onItemSelected(item)" 
+    [ngClass]="{
+        'nav-link': true,
+        'active' : (item.route ? router.url.includes(item.route) : false)        
+      }"
+      [ngStyle]="{
+        'cursor': 'pointer'
+      }"
+      >
+      <span >{{ item.displayName }}</span>
+    </a>
+</li>

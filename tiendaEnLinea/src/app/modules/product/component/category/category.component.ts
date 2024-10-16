@@ -15,9 +15,10 @@ declare var $: any;
 })
 export class CategoryComponent {
   categories: any[] = [];
+  form: FormGroup; // formulario
   swal: SwalMessages = new SwalMessages(); // swal messages
-  form: FormGroup;  
   submitted = false; // form submitted
+  loading = false; // loading request
 
   constructor(private categoryService: CategoryService, private formBuilder: FormBuilder) { 
     this.form = this.formBuilder.group({
@@ -36,8 +37,19 @@ export class CategoryComponent {
   }
 
   getCategories() {
-    this.categories = this.categoryService.getCategories();
-  }
+    this.loading = true;
+    this.categoryService.getCategories().subscribe({
+      next: (v) => {
+        this.categories = v;
+        // console.log(v);
+        this.loading = false;
+      },
+      error: (e) => {
+        console.log(e);
+        this.loading = false;
+      }
+    })
+  }  
 
   ngOnInit() {
     this.getCategories();
@@ -65,6 +77,8 @@ export class CategoryComponent {
   onSubmit() {
     this.submitted = true; // ya se ha enviado el formulario
     if (this.form.invalid) return; // si el formulario es inválido, se detiene la ejecución de la función
+    this.submitted = false;
     this.addCategory(); // se llama a la función para agregar una nueva categoria
   }
 }
+
