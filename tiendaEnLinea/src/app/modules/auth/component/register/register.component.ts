@@ -32,7 +32,7 @@ export class RegisterComponent {
   }
   ngOnInit(): void {
     if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/secured/landing');
+      this.router.navigateByUrl('/secured');
     }
   }
   public onRegister(): void {
@@ -44,8 +44,6 @@ export class RegisterComponent {
     usuario.password = usuarioFormValue.password;
     usuario.rfc = usuarioFormValue.rfc;
     usuario.username = usuarioFormValue.username;
-    usuario.user_id = 10;
-    usuario.rol_id = 1;
     this.showLoading = true;
     this.subscriptions.push(
       this.authenticationService.register(usuario).subscribe(
