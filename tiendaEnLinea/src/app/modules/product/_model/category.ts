@@ -1,9 +1,9 @@
 export class Category {
     // Class properties
-    private category_id:    number;
-    private category:       string;
-    private tag:            string;
-    private status:         string;
+    category_id:    number;
+    category:       string;
+    tag:            string;
+    status:         string;
     
     // Constructor, only stores the values
     constructor(category_id: number, category: string, tag: string, status: string){

@@ -12,6 +12,10 @@ export class CategoryService {
   private source = "/category";
   constructor(private http: HttpClient) { }
 
+  createRegion(category: Category): Observable<any> {
+    return this.http.post(api_dwb_uri + this.source, category);
+  }
+
   getCategories(): Observable<any> {
     return this.http.get(api_dwb_uri + this.source);
   }

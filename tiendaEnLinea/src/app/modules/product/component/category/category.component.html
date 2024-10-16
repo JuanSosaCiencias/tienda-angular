@@ -24,20 +24,22 @@
           }@else {
             <table class="table table-bordered table-striped table-sm mx-auto w-100 text-center">
               <thead class="thead-dark">
-                <tr>
-                  <th class="col-md-3">ID de categoría</th>
-                  <th class="col-md-3">Categoría</th>
-                  <th class="col-md-3">Etiqueta</th>
-                  <th class="col-md-3">Estado</th>
+                <tr class="table-primary">
+                  <th scope="col">No.</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Tag</th>
+                  <th scope="col">Estatus</th>
                 </tr>
               </thead> 
               <tbody>
-                  <tr *ngFor="let category of categories">
-                    <td class="col-md-3">{{ category.category_id }}</td>
-                    <td class="col-md-3">{{ category.category }}</td>
-                    <td class="col-md-3">{{ category.tag }}</td>
-                    <td class="col-md-3">{{ category.status }}</td>
-                  </tr> 
+                @for(category of categories; track category.category_id; let i = $index) {
+                  <tr>
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ category.category }}</td>
+                      <td>{{ category.tag }}</td>
+                      <td>{{ category.status }}</td>
+                  </tr>
+              }
               </tbody>
             </table>
           }
@@ -57,20 +59,20 @@
       <div class="modal-body">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">  
           <div class="mb-3">
-            <label for="categoria" class="form-label">Categoría <span class="input-required">*</span></label>
-            <input type="text" class="form-control" placeholder="Nombre de la categoría" formControlName="categoria" [ngClass]="{'is-invalid': form.controls['categoria'].errors && submitted}">  
-            <!-- Mensaje de error para el campo categoria -->
-            @if (form.controls['categoria'].errors && submitted) {
+            <label for="category" class="form-label">Categoría <span class="input-required">*</span></label>
+            <input type="text" class="form-control" placeholder="Nombre de la categoría" formControlName="category" [ngClass]="{'is-invalid': form.controls['category'].errors && submitted}">  
+            <!-- Mensaje de error para el campo category -->
+            @if (form.controls['category'].errors && submitted) {
               <small class="input-error-message">Favor de ingresar un nombre de categoría válido</small>
             }
           </div>
 
           <div class="mb-3">
-            <label for="etiqueta" class="form-label">Etiqueta <span class="input-required">*</span></label>
-            <input type="text" class="form-control" placeholder="Código de la etiqueta" formControlName="etiqueta" [ngClass]="{'is-invalid': form.controls['etiqueta'].errors && submitted}">  
-            <!-- Mensaje de error para el campo etiqueta -->
-            @if (form.controls['etiqueta'].errors && submitted) {
-              <small class="input-error-message">Favor de ingresar un código de etiqueta válido</small>
+            <label for="tag" class="form-label">tag <span class="input-required">*</span></label>
+            <input type="text" class="form-control" placeholder="Código de la tag" formControlName="tag" [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">  
+            <!-- Mensaje de error para el campo tag -->
+            @if (form.controls['tag'].errors && submitted) {
+              <small class="input-error-message">Favor de ingresar un código de tag válido</small>
             }
           </div>
 

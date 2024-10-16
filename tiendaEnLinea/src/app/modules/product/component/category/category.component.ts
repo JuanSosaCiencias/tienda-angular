@@ -14,7 +14,8 @@ declare var $: any;
   styleUrls: ['./category.component.css']  
 })
 export class CategoryComponent {
-  categories: any[] = [];
+  // variables de la clase
+  categories: Category[] = []; // lista de categorias
   form: FormGroup; // formulario
   swal: SwalMessages = new SwalMessages(); // swal messages
   submitted = false; // form submitted
@@ -22,8 +23,8 @@ export class CategoryComponent {
 
   constructor(private categoryService: CategoryService, private formBuilder: FormBuilder) { 
     this.form = this.formBuilder.group({
-      categoria: ["", [Validators.required]],
-      etiqueta: ["", [Validators.required]],
+      category: ["", [Validators.required]],
+      tag: ["", [Validators.required]],
     });
 
     // Esta parte es para resetear los errores al escribir en los campos
@@ -65,20 +66,26 @@ export class CategoryComponent {
     $("#modalForm").modal("hide");
   }
 
-  private addCategory(){
-    let id = this.categories.length + 1; // obtenemos el id de la nueva categoria
-    let region = new Category(id, this.form.controls['categoria'].value!, this.form.controls['etiqueta'].value!, 'Activo'); // creamos un objeto de tipo Category
-    this.categories.push(region); // agregamos la nueva categoria al arreglo
-    this.swal.successMessage("La categoria ha sido registrada"); // usamos sweetalert para dar un mensaje bonito al usuario
-    this.hideModalForm(); // cerramos el modal
-  }
-
   // función para registrar una nueva categoria
   onSubmit() {
-    this.submitted = true; // ya se ha enviado el formulario
-    if (this.form.invalid) return; // si el formulario es inválido, se detiene la ejecución de la función
+    // validación del formulario 
+    this.submitted = true;
+    if(this.form.invalid){ return;}
     this.submitted = false;
-    this.addCategory(); // se llama a la función para agregar una nueva categoria
+
+    this.categoryService.createRegion(this.form.value).subscribe({
+      next: (v) => {
+        console.log(v);
+        this.getCategories();
+        this.hideModalForm();
+        this.form.reset();
+        this.swal.successMessage(v.message);
+      },
+      error: (e) => {
+        console.log(e);
+        this.swal.errorMessage(e.error.message);
+      }
+    });
   }
 }
 
