@@ -13,7 +13,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": true,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "experimentalDecorators": true,
     "moduleResolution": "bundler",
     "importHelpers": true,
