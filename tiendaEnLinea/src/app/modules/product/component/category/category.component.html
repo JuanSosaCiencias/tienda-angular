@@ -3,9 +3,10 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
+          <!-- Button to show modal form + Titulo -->
           <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
             <i class="ph ph-plus-circle"></i>
-            Nueva categoría
+            Categoría
           </button>
           <h4>Categorías</h4>
         </div>
@@ -23,6 +24,8 @@
                 <h4>No cuentas con categorías registradas</h4>
             </div>
           }@else {
+
+            <!-- Columnas de tabla Categorías -->
             <table class="table table-bordered table-striped table-sm mx-auto w-100 text-center">
               <thead class="thead-dark">
                 <tr class="table-primary">
@@ -34,6 +37,8 @@
                 </tr>
               </thead> 
               <tbody>
+
+                <!-- Get categories -->
                 @for(category of categories; track category.category_id; let i = $index) {
                   <tr>
                       <td>{{ i + 1 }}</td>
@@ -45,11 +50,11 @@
                       </td>
                       <td>
                         <div class="dropdown">
+
                           <!-- dots button  -->
                           <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
                           </button>
-      
       
                           <!-- menu options -->
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
