@@ -58,7 +58,7 @@
       
                           <!-- menu options -->
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" (click)="updateCategory(category)">
+                            <a class="dropdown-item update-item" (click)="updateCategory(category)">
                               <i class="ph ph-note-pencil icon-text-ul"></i>Editar
                             </a>
                             @if (category.status == "0") {
@@ -104,11 +104,11 @@
           </div>
 
           <div class="mb-3">
-            <label for="tag" class="form-label">tag <span class="input-required">*</span></label>
-            <input type="text" class="form-control" placeholder="Código de la tag" formControlName="tag" [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">  
+            <label for="tag" class="form-label">Tag <span class="input-required">*</span></label>
+            <input type="text" class="form-control" placeholder="Codigo tag" formControlName="tag" [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">  
             <!-- Mensaje de error para el campo tag -->
             @if (form.controls['tag'].errors && submitted) {
-              <small class="input-error-message">Favor de ingresar un código de tag válido</small>
+              <small class="input-error-message">Favor de ingresar un tag válido</small>
             }
           </div>
 

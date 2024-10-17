@@ -69,6 +69,10 @@
 }
 
 .dropdown-item:hover{
+  text-decoration: underline;
+}
+
+.update-item{
   color: white !important;
 }
 
