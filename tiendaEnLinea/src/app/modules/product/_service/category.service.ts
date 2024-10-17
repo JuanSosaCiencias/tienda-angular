@@ -64,7 +64,7 @@ export class CategoryService {
    * @param {Category} category - El objeto que contiene los datos actualizados de la categoría.
    * @returns {Observable<any>} - Un `Observable` que emite la respuesta del servidor después de la actualización.
   */
-  updateCategory(id: number, category: Category): Observable<any> {
+  updateCategory(category: any, id: number): Observable<any> {
     return this.http.put(api_dwb_uri + this.source + "/" + id, category);
   }
   
