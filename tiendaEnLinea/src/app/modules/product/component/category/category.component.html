@@ -56,12 +56,16 @@
                             <a class="dropdown-item" (click)="updateCategory(category)">
                               <i class="ph ph-note-pencil icon-text-ul"></i>Editar
                             </a>
-                            <a class="dropdown-item enable-item">
-                              <i class="ph ph-check-circle icon-text-ul"></i>Activar
-                            </a>
-                            <a class="dropdown-item disable-item">
-                              <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
-                            </a>
+                            @if (category.status == "0") {
+                              <a class="dropdown-item enable-item" (click)="activateCategory(category.category_id)">
+                                <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                              </a>
+                            }
+                            @if (category.status == "1") {
+                              <a class="dropdown-item disable-item" (click)="deleteCategory(category.category_id)">
+                                <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
+                              </a>
+                            }
                           </div>
                         </div>
                       </td>

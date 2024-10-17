@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { SharedModule, SwalMessages} from '../../../../shared/shared-module';
+import { SharedModule} from '../../../../shared/shared-module';
 import { Category } from '../../_model/category';
 import { CategoryService } from '../../_service/category.service'; 
+import { SwalMessages } from '../../../../shared/swal-messages';
 
 declare var $: any; // Declara la variable jQuery.
 
@@ -133,6 +134,53 @@ export class CategoryComponent {
     this.category_id = category.category_id;
     this.form.controls['region'].setValue(category.category);
     this.form.controls['tag'].setValue(category.tag);
+  }
+
+  /**
+   * Activa una categoría en la base de datos.
+   * 
+   * @param {number} id - El ID de la categoría a activar.
+  */
+  activateCategory(id: number){
+    this.swal.confirmMessage.fire({
+      title: "Favor de confirmar la activación",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.activateCategory(id).subscribe({
+          next: (v) => {
+            this.swal.successMessage(v.message);
+            this.getCategories();
+          },
+          error: (e) => {
+            console.log(e);
+            this.swal.errorMessage(e.error.message);
+          }
+        });
+      }}); 
+  }
+  
+  /**
+   * Desactiva una categoría en la base de datos. (la elimina)
+   * 
+   * @param {number} id - El ID de la categoría a desactivar.
+  */
+  deleteCategory(id: number){
+    this.swal.confirmMessage.fire({
+      title: "Favor de confirmar la eliminación",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.categoryService.deleteCategory(id).subscribe({
+          next: (v) => {
+            this.swal.successMessage(v.message);
+            this.getCategories();
+          },
+          error: (e) => {
+            console.log(e);
+            this.swal.errorMessage(e.error.message);
+          }
+        });
+      }
+    });
   }
 
   /**
