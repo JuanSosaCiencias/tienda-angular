@@ -37,7 +37,7 @@
                       <td>{{ i + 1 }}</td>
                       <td>{{ category.category }}</td>
                       <td>{{ category.tag }}</td>
-                      <td>{{ category.status }}</td>
+                      <td>@if (category.status=='1') {Activo} @else {Inactivo}</td>
                   </tr>
               }
               </tbody>

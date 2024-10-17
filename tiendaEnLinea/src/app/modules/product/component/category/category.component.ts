@@ -73,7 +73,7 @@ export class CategoryComponent {
     if(this.form.invalid){ return;}
     this.submitted = false;
 
-    this.categoryService.createRegion(this.form.value).subscribe({
+    this.categoryService.createCategory(this.form.value).subscribe({
       next: (v) => {
         console.log(v);
         this.getCategories();
