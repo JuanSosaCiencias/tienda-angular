@@ -3,8 +3,10 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
+          <!-- Button to show modal form + Titulo -->
           <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
-            Nueva categoría
+            <i class="ph ph-plus-circle"></i>
+            Categoría
           </button>
           <h4>Categorías</h4>
         </div>
@@ -22,6 +24,8 @@
                 <h4>No cuentas con categorías registradas</h4>
             </div>
           }@else {
+
+            <!-- Columnas de tabla Categorías -->
             <table class="table table-bordered table-striped table-sm mx-auto w-100 text-center">
               <thead class="thead-dark">
                 <tr class="table-primary">
@@ -29,15 +33,47 @@
                   <th scope="col">Categoria</th>
                   <th scope="col">Tag</th>
                   <th scope="col">Estatus</th>
+                  <th scope="col">Más</th>
                 </tr>
               </thead> 
               <tbody>
+
+                <!-- Get categories -->
                 @for(category of categories; track category.category_id; let i = $index) {
                   <tr>
                       <td>{{ i + 1 }}</td>
                       <td>{{ category.category }}</td>
                       <td>{{ category.tag }}</td>
-                      <td>{{ category.status }}</td>
+                      <td>@if (category.status=='1'){ {{ "Activo" }} }  
+                          @else { <span class="td-status-disable"> {{ "Inactivo" }}</span>  
+                              } 
+                      </td>
+                      <td>
+                        <div class="dropdown">
+
+                          <!-- dots button  -->
+                          <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                          </button>
+      
+                          <!-- menu options -->
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item update-item" (click)="updateCategory(category)">
+                              <i class="ph ph-note-pencil icon-text-ul"></i>Editar
+                            </a>
+                            @if (category.status == "0") {
+                              <a class="dropdown-item enable-item" (click)="activateCategory(category.category_id)">
+                                <i class="ph ph-check-circle icon-text-ul"></i>Activar
+                              </a>
+                            }
+                            @if (category.status == "1") {
+                              <a class="dropdown-item disable-item" (click)="deleteCategory(category.category_id)">
+                                <i class="ph ph-x-circle icon-text-ul"></i>Desactivar
+                              </a>
+                            }
+                          </div>
+                        </div>
+                      </td>
                   </tr>
               }
               </tbody>
@@ -53,7 +89,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Agregar Categoría</h5>
+        <h5 class="modal-title">Categoría</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -68,11 +104,11 @@
           </div>
 
           <div class="mb-3">
-            <label for="tag" class="form-label">tag <span class="input-required">*</span></label>
-            <input type="text" class="form-control" placeholder="Código de la tag" formControlName="tag" [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">  
+            <label for="tag" class="form-label">Tag <span class="input-required">*</span></label>
+            <input type="text" class="form-control" placeholder="Codigo tag" formControlName="tag" [ngClass]="{'is-invalid': form.controls['tag'].errors && submitted}">  
             <!-- Mensaje de error para el campo tag -->
             @if (form.controls['tag'].errors && submitted) {
-              <small class="input-error-message">Favor de ingresar un código de tag válido</small>
+              <small class="input-error-message">Favor de ingresar un tag válido</small>
             }
           </div>
 

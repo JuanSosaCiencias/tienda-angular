@@ -1,4 +1,129 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap");
+/* DWF2025-1 STYLES */
+
+.body-content{
+  max-width: 1280px;
+  margin: auto;
+  margin-top: 16px;
+}
+
+.navbar-content{
+  max-width: 1280px;
+  margin: auto;
+}
+
+/* button  */
+
+.btn-new{
+  float: right;
+}
+
+.form-button{
+  margin: 24px;
+  text-align: center;
+}
+ 
+.btn-save{
+  width: 240px;
+}
+
+/* input  */
+
+.input-required{
+  color: red;
+}
+
+.input-error-message{
+  color: red;
+  margin: 4px;
+}
+
+/* images  */
+
+.img-loading{
+  width: 100px;
+  height: 100px;
+}
+
+/* tables  */
+
+.td-status-disable{
+  color: red;
+}
+
+.table-empty{
+  padding: 24px;
+}
+
+/* ul dropdown  */
+
+.dropdown-button{
+  border: none;
+  background-color: transparent;
+}
+
+.dropdown-item{
+  color: black !important;
+  cursor: pointer;
+}
+
+.dropdown-item:hover{
+  text-decoration: underline;
+}
+
+.update-item{
+  color: white !important;
+}
+
+.enable-item{
+  color: blue !important;
+}
+
+.disable-item{
+  color: red !important;
+}
+
+.icon-text-ul{
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+/* swal messages  */
+
+.swal-title{
+  font-size: 24px;
+}
+
+
+.swal-icon{
+  font-size: 12px;
+}
+
+
+.swal-cancel-button{
+  width: 120px;
+  margin: 12px;
+}
+
+
+.swal-confirm-button{
+  width: 120px;
+  margin: 12px;
+}
+
+.btn-return{
+  cursor: pointer;
+  margin: 4px 0px 8px 0px !important;
+}
+
+
+.btn-return:hover{
+  color: blue;
+}
+
+/* BOOTSWATCH STYLES */
+
 /*!
  * Bootswatch v5.3.3 (https://bootswatch.com)
  * Theme: darkly
@@ -11,7 +136,6 @@
  * Copyright 2011-2024 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap");
 :root,
 [data-bs-theme=light] {
   --bs-blue: #375a7f;
@@ -221,17 +345,6 @@
 
 .privacy-notice:hover {
   /* No cambia nada al hacer hover */
-}
-
-.navbar-content{
-  max-width:1280px;
-  margin:auto;
-}
-
-.body-content{
-  max-width:1280px;
-  margin:auto;
-  margin-top:18px;
 }
 
 body {
