@@ -6,6 +6,10 @@ export const navItems: NavItem[] = [
          route: '/category',         
     },
     {
+        displayName: 'Customer',
+         route: '/customer',         
+    },
+    {
         displayName: 'Login',
          route: '/login',       
 

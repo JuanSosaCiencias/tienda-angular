@@ -122,6 +122,14 @@
   color: blue;
 }
 
+.btn-return{
+  cursor: pointer;
+  margin: 4px 0px 8px 0px !important;
+}
+.btn-return:hover{
+  color: blue;
+}
+
 /* BOOTSWATCH STYLES */
 
 /*!
