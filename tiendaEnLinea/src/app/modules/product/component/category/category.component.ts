@@ -132,7 +132,7 @@ export class CategoryComponent {
     this.showModalForm();
 
     this.category_id = category.category_id;
-    this.form.controls['region'].setValue(category.category);
+    this.form.controls['category'].setValue(category.category);
     this.form.controls['tag'].setValue(category.tag);
   }
 
