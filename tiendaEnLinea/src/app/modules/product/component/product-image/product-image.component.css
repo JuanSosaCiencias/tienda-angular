@@ -1,0 +1,21 @@
+.card-body-product{
+    padding: 16px;
+}
+.product-image{
+    border-radius: 100%;
+    width: 240px;
+    height: 240px;
+}
+.edit-product-image{
+    color: blue;
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+.product-title{
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+.btn-edith, .btn-delete{
+    width: 140px;
+    margin-right: 24px;
+}

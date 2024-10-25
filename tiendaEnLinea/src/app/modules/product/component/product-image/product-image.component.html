@@ -1,0 +1,86 @@
+<div class="card-header">
+    <div class="btn-return" (click)="redirect('product')">
+        <i class="ph ph-arrow-circle-left"></i>
+        Regresar
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <!-- product image  -->
+   
+        <div class="col-md-4">
+            <div class="card">
+              <!-- image  -->
+              <div class="card-body-product text-center">
+                <!-- @if (customer.image.image) {
+                    <img src="{{ customer.image.image }}" class="customer-image">  
+                }@else {
+                    <img src="assets/user-logo.png" class="customer-image">  
+                } -->
+                <img src="{{ product.image.image ? product.image.image: 'assets/user-logo.png' }}" class="product-image">
+              </div>
+              <!-- button  -->
+              <div class="text-center">
+                  <label for="uploadImage">
+                      <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" class="d-none">
+                      <div class="edit-product-image ">
+                        <i class="ph ph-note-pencil icon-text-button"></i>
+                        Editar imagen
+                      </div>
+                  </label>
+              </div>
+            </div>
+        </div>
+   
+        <!-- product data  -->
+   
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body-product">
+                    <!-- name  -->
+                    <div class="product-title">
+                        {{ product.product + " " + product.product_id }}
+                    </div>
+                    <table class="table">
+                        <tbody>
+                           
+                            <!-- dt  -->
+                            <tr>
+                                <th class="col-md-4">Precio</th>
+                                <td>{{ product.price }}</td>
+                            </tr>   
+                               
+                            <!-- description  -->
+                            <tr>
+                                <th class="col-md-4">Descripción</th>
+                                <td>{{ product.description }}</td>
+                            </tr>
+                           
+                            <!-- category 
+                            <tr>
+                                <th class="col-md-4">Producto</th>
+                                <td>{{ product.category }}</td>
+                            </tr> -->
+
+                            <!-- stock  -->
+                            <tr>
+                                <th class="col-md-4">Stock</th>
+                                <td>{{ product.stock }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- buttons  -->
+                    <button type="button" class="btn btn-primary btn-edith">
+                        <i class="ph ph-note-pencil"></i>
+                        Editar
+                    </button>
+                    <button type="button" class="btn btn-danger btn-delete">
+                        <i class="ph ph-trash"></i>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+   
+    </div>
+</div>

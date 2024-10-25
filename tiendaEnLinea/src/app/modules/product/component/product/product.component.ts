@@ -6,6 +6,8 @@ import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { CategoryService } from '../../_service/category.service';
 import { ProductService } from '../../_service/product.service';
+import { Router } from '@angular/router';
+
 declare var $: any; // JQuery
 @Component({
   selector: 'app-product',
@@ -28,6 +30,7 @@ export class ProductComponent {
     private categoryService: CategoryService,
     private productService: ProductService,
     private formBuilder: FormBuilder,
+    private router: Router,
   ){
     this.form = this.formBuilder.group({
       product: ["", [Validators.required]],
@@ -130,5 +133,9 @@ export class ProductComponent {
         this.swal.errorMessage(e.error!.message); // show message
       }
     });
+  }
+
+  showProduct(gtin: string){
+    this.router.navigate(['product/' + gtin]);
   }
 }

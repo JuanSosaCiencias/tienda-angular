@@ -12,7 +12,10 @@ import { authenticationGuard } from './modules/auth/authentication.guard';
 // Importamos los componentes del consumidor
 import { CustomerComponent } from './modules/customer/component/customer/customer.component';
 import { CustomerImageComponent } from './modules/customer/component/customer-image/customer-image.component';
+
+// Importamos los componentes del producto
 import { ProductComponent } from './modules/product/component/product/product.component';
+import { ProductImageComponent } from './modules/product/component/product-image/product-image.component';
 
 export const routes: Routes = [
     // Asociamos '/categoria' a el componente de Angular que creamos en la carpeta
@@ -37,6 +40,10 @@ export const routes: Routes = [
     {
         path: 'product',
         component: ProductComponent 
+    },
+    {
+        path: 'product/:gtin',
+        component: ProductImageComponent
     },
     {
         path: 'login',

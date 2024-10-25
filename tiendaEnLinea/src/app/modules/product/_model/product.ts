@@ -1,3 +1,6 @@
+import { Category } from "./category";
+import { ProductImage } from "./product-image";
+
 export class Product{
     product_id: number = 0;
     product: string = "";
@@ -7,4 +10,5 @@ export class Product{
     stock: number = 0;
     category_id: number = 0;
     status: number = 0;
+    image: ProductImage = new ProductImage();
 }
