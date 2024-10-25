@@ -12,12 +12,35 @@
             <div class="card">
               <!-- image  -->
               <div class="card-body-product text-center">
-                <!-- @if (customer.image.image) {
-                    <img src="{{ customer.image.image }}" class="customer-image">  
+
+                <!-- <c-carousel>
+                    <c-carousel-indicators></c-carousel-indicators>
+                    <c-carousel-inner>
+                      <c-carousel-item *ngFor="let slide of slides">
+                        <img
+                          [src]="slide.src"
+                          alt="{{ slide.title }}"
+                          class="d-block w-100"
+                          loading="lazy" />
+                      </c-carousel-item>
+                    </c-carousel-inner>
+                    <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+                    <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+                  </c-carousel> -->
+
+                <!-- 1                
+                @if(product.image.image){} -->
+                <!-- <img src="{{ productImage.image ? productImage.image: 'assets/product-default.jpg' }}" class="product-image"> -->
+
+                <!-- @if (product.image.image) {
+                    <img src="{{ product.image.image }}" class="product-image">  
                 }@else {
-                    <img src="assets/user-logo.png" class="customer-image">  
+                    <img src="assets/user-logo.png" class="product-image">  
                 } -->
-                <img src="{{ product.image.image ? product.image.image: 'assets/user-logo.png' }}" class="product-image">
+                @for(image of images; track image.product_image_id) {
+                    <img src="{{ image.image ? image.image: 'assets/user-logo.png' }}" class="product-image">
+                }    
+                <!-- <img src="{{ product.image.image ? product.image.image: 'assets/user-logo.png' }}" class="product-image"> -->
               </div>
               <!-- button  -->
               <div class="text-center">
@@ -56,11 +79,11 @@
                                 <td>{{ product.description }}</td>
                             </tr>
                            
-                            <!-- category 
+                            <!-- category  -->
                             <tr>
-                                <th class="col-md-4">Producto</th>
+                                <th class="col-md-4">Categoría</th>
                                 <td>{{ product.category }}</td>
-                            </tr> -->
+                            </tr>
 
                             <!-- stock  -->
                             <tr>

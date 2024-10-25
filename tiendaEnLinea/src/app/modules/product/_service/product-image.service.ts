@@ -17,4 +17,8 @@ export class ProductImageService {
   updateProductImage(productImage: any): Observable<any>{
     return this.http.post(api_dwb_uri + this.source, productImage);
   }
+
+  getProductImages(product_id: any): Observable<any>{
+    return this.http.get(api_dwb_uri + this.source + "/" + product_id);
+  }
 }
