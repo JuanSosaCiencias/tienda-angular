@@ -21,4 +21,8 @@ export class ProductImageService {
   getProductImages(product_id: any): Observable<any>{
     return this.http.get(api_dwb_uri + this.source + "/" + product_id);
   }
+
+  deleteProductImage(product_id: any): Observable<any>{
+    return this.http.delete(api_dwb_uri + this.source + "/" + product_id);
+  }
 }

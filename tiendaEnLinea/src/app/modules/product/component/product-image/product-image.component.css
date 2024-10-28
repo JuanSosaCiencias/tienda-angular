@@ -1,21 +1,30 @@
 .card-body-product{
     padding: 16px;
 }
-.product-image{
-    border-radius: 100%;
-    width: 240px;
-    height: 240px;
-}
+
 .edit-product-image{
-    color: blue;
-    margin-bottom: 16px;
+    color: rgb(136, 136, 255);
+    margin-top: 5px;
+    margin-bottom: 5px;
     cursor: pointer;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
 .product-title{
     font-size: 32px;
     margin-bottom: 16px;
 }
+
 .btn-edith, .btn-delete{
     width: 140px;
     margin-right: 24px;
+}
+
+.btn-save{
+    margin-left: 43%;
+    margin-top: 15px;
+    margin-bottom: 5px;
 }

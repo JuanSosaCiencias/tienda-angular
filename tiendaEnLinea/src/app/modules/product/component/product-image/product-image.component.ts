@@ -12,40 +12,40 @@ import { ProductService } from '../../_service/product.service';
 import { ProductImage } from '../../_model/product-image';
 import { ProductImageService } from '../../_service/product-image.service';
 
-// Voy a hacer un carousel
-import {
-  CarouselComponent,
-  CarouselControlComponent,
-  CarouselIndicatorsComponent,
-  CarouselInnerComponent,
-  CarouselItemComponent,
-  ThemeDirective
-} from '@coreui/angular';
-import { CommonModule, NgFor } from '@angular/common';
+// Importaciones de la categoría
+import { Category } from '../../_model/category';
+import { CategoryService } from '../../_service/category.service';
+
+import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Importa este módulo para las animaciones
-import { trigger, transition, style, animate } from '@angular/animations';
+
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+declare var $: any; // Declara la variable jQuery.
 
 @Component({
   selector: 'app-product-image',
   standalone: true,
   imports: [
-    SharedModule,ThemeDirective, CarouselComponent, 
-    CarouselIndicatorsComponent, CarouselInnerComponent, 
-    CarouselItemComponent, CarouselControlComponent, RouterLink,
-    CommonModule],
+    SharedModule, RouterLink,CommonModule
+  ],
   templateUrl: './product-image.component.html',
   styleUrl: './product-image.component.css',
 })
-export class ProductImageComponent {
 
+export class ProductImageComponent {
   gtin: string = ""; // product gtin
   product: Product = new Product();
   productImage: ProductImage = new ProductImage();
   images: ProductImage[] = []; // images
+  product_id: number = 0; // product id
 
   loading = false; // loading request
   swal: SwalMessages = new SwalMessages(); // swal messages
+
+  submitted = false; // form submitted
+  form: FormGroup; // formulario
+  categories: Category[] = []; // lista de categorias
 
   constructor(
     private route: ActivatedRoute,
@@ -53,7 +53,18 @@ export class ProductImageComponent {
     private productImageService: ProductImageService, // servicio product-image de API
     private ngxService: NgxPhotoEditorService,
     private router: Router,
-  ){}
+    private formBuilder: FormBuilder,
+    private categoryService: CategoryService, // servicio category de API
+  ){
+    this.form = this.formBuilder.group({
+      gtin: ["", [Validators.required]],
+      product: ["", [Validators.required]],
+      price: ["", [Validators.required]],
+      stock: ["", [Validators.required]],
+      category_id: ["", [Validators.required]],
+      description: ["", [Validators.required]],
+    });
+  }
 
   ngOnInit(){
     this.gtin = this.route.snapshot.paramMap.get('gtin')!;
@@ -62,15 +73,6 @@ export class ProductImageComponent {
     }else{
       this.swal.errorMessage("Gtin inválido"); 
     }
-    this.slides[0] = {
-      src: 'assets/product-default.jpg'
-    };
-    this.slides[1] = {
-      src: 'assets/user-logo.png'
-    };
-    this.slides[2] = {
-      src: 'assets/user-logo.png'
-    };  
   }
 
   getProduct(){
@@ -78,6 +80,8 @@ export class ProductImageComponent {
     this.productService.getProduct(this.gtin).subscribe({
       next: (v) => {
         this.product = v;
+        this.product_id = v.product_id;
+        this.getCategories();
         this.getProductImages();
         this.loading = false;
         console.log(this.product);
@@ -88,8 +92,6 @@ export class ProductImageComponent {
       }
     });
   }
-
-  // this.productImage = this.productImageService.getProducImages();
 
   getProductImages(){
     this.loading = true;
@@ -126,6 +128,25 @@ export class ProductImageComponent {
     });
   }
 
+  deleteProductImage(product_id: number){
+    this.swal.confirmMessage.fire({
+      title: "Favor de confirmar la eliminación",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productImageService.deleteProductImage(product_id).subscribe({
+          next: (v) => {
+            this.swal.successMessage(v.message);
+            this.getProduct();
+          },
+          error: (e) => {
+            console.log(e);
+            this.swal.errorMessage(e.error.message);
+          }
+        });
+      }
+    });
+  }
+
   // img
   fileChangeHandler($event: any) {
     this.ngxService.open($event, {
@@ -137,11 +158,66 @@ export class ProductImageComponent {
       this.updateProductImage(data.base64!);
     });
   }
+
+  updateProduct(){
+    this.resetVariables();
+    this.showModalForm();
+  }
+
+  onSubmit() {
+    // validación del formulario 
+    this.submitted = true;
+    if(this.form.invalid){ return;}
+    this.submitted = false;
+
+    console.log(this.form.value);
+
+    this.productService.updateProduct(this.form.value, this.product_id).subscribe({
+      next: (v) => {
+        this.swal.successMessage(v.message);
+        this.hideModalForm();
+        this.gtin = this.form.value.gtin;
+        this.getProduct();
+      },
+      error: (e) => {
+        console.error(e);
+        this.swal.errorMessage(e.error.message);
+      }
+    });
+  }
+
+  getCategories() {
+    this.loading = true;
+    this.categoryService.getCategories().subscribe({
+      next: (v) => {
+        this.categories = v;
+        this.loading = false;
+      },
+      error: (e) => {
+        console.log(e);
+        this.loading = false;
+      }
+    })
+  }  
+
+  resetVariables(){
+    this.form.reset();
+    this.submitted = false;
+  }
+
+  showModalForm() {
+    $("#modalForm").modal("show");
+  } 
+
+  /**
+   * Oculta el formulario modal.
+   */
+  hideModalForm() {
+    $("#modalForm").modal("hide");
+  }
+
   // aux 
   redirect(url: string){
     this.router.navigate([url]);
   }
-
-  slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
-
 }
