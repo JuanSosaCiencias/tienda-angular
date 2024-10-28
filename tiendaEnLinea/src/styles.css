@@ -59,12 +59,13 @@
 /* ul dropdown  */
 
 .dropdown-button{
+  color: rgb(255, 255, 255) !important;
   border: none;
   background-color: transparent;
 }
 
 .dropdown-item{
-  color: black !important;
+  color: rgb(255, 255, 255) !important;
   cursor: pointer;
 }
 

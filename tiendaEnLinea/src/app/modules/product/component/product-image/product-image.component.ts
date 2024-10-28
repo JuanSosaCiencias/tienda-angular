@@ -162,6 +162,13 @@ export class ProductImageComponent {
   updateProduct(){
     this.resetVariables();
     this.showModalForm();
+
+    this.form.controls['gtin'].setValue(this.product.gtin);
+    this.form.controls['product'].setValue(this.product.product);
+    this.form.controls['price'].setValue(this.product.price);
+    this.form.controls['stock'].setValue(this.product.stock);
+    this.form.controls['category_id'].setValue(this.product.category_id);
+    this.form.controls['description'].setValue(this.product.description);  
   }
 
   onSubmit() {

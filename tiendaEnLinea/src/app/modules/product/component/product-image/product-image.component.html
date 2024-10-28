@@ -7,13 +7,6 @@
                     Regresar
                 </span>
             </div>
-
-            <div class="col-md">
-                <span class="edit-product" (click)="updateProduct()">
-                    <i class="ph ph-note-pencil icon-text-button"></i>
-                    Editar producto
-                </span>
-            </div>
         </div>
     </div>
     <br>
@@ -73,7 +66,7 @@
                         <label for="uploadImage" class="cursor-pointer">
                             <input type="file" (change)="fileChangeHandler($event)" id="uploadImage"
                                 style="display:none">
-                            <i class="ph ph-note-pencil icon-text-button"></i>
+                            <i class="ph ph-note-pencil"></i>
                              Editar imagen
                         </label>
                     </div>
@@ -126,6 +119,10 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <button type="button" class="btn btn-primary btn-edith" (click)="updateProduct()">
+                            <i class="ph ph-note-pencil"></i>
+                            Editar
+                        </button>
                     </div>
                 </div>
             </div>
@@ -140,7 +137,7 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar producto</h5>
+                    <h5 class="modal-title">Editar producto</h5>    
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
