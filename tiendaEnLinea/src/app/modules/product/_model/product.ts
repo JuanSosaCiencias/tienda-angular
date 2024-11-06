@@ -1,4 +1,3 @@
-import { Category } from "./category";
 import { ProductImage } from "./product-image";
 
 export class Product{
@@ -11,5 +10,5 @@ export class Product{
     category_id: number = 0;
     status: number = 0;
     category: string = "";
-    image: ProductImage = new ProductImage();
+    // image: ProductImage = new ProductImage();
 }

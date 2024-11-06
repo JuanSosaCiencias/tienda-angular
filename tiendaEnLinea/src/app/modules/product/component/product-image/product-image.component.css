@@ -3,9 +3,9 @@
 }
 
 .edit-product-image{
+    position: relative;
     color: rgb(136, 136, 255);
-    margin-top: 23.5px;
-    margin-bottom: 23.5px;
+    top: -22px;
     cursor: pointer;
 }
 
@@ -27,4 +27,10 @@
     margin-left: 43%;
     margin-top: 15px;
     margin-bottom: 5px;
+}
+
+
+.basura{
+    position: relative;
+    left : 90%;
 }

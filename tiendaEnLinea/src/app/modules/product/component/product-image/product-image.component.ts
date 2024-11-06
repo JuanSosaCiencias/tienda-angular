@@ -98,7 +98,7 @@ export class ProductImageComponent {
     this.productImageService.getProductImages(this.product.product_id).subscribe({
       next: (v) => {
         this.productImage = v;
-        this.product.image = v;
+        // this.product.image = v;
         this.images = v;
         this.loading = false;
       },
@@ -129,6 +129,7 @@ export class ProductImageComponent {
   }
 
   deleteProductImage(product_id: number){
+    console.log(product_id);
     this.swal.confirmMessage.fire({
       title: "Favor de confirmar la eliminación",
     }).then((result) => {
@@ -206,6 +207,7 @@ export class ProductImageComponent {
       }
     })
   }  
+  
 
   resetVariables(){
     this.form.reset();
