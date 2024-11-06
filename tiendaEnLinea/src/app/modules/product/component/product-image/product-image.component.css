@@ -1,0 +1,36 @@
+.card-body-product{
+    padding: 16px;
+}
+
+.edit-product-image{
+    position: relative;
+    color: rgb(136, 136, 255);
+    top: -22px;
+    cursor: pointer;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.product-title{
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.btn-edith, .btn-delete{
+    width: 140px;
+    margin-right: 24px;
+}
+
+.btn-save{
+    margin-left: 43%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+
+.basura{
+    position: relative;
+    left : 90%;
+}
