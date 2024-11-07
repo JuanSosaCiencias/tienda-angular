@@ -1,17 +1,53 @@
 .custom-header {
     background-image: url('/assets/fondo.jpg');
-    background-size: cover;
-    background-position: center;
+    background-size: cover; /* La imagen se adapta a todo el fondo, cubriendo el área del contenedor */
+    background-position: center; /* Alineación centrada de la imagen */
+    background-attachment: fixed; /* La imagen de fondo permanecerá fija cuando se haga scroll */
+    background-repeat: no-repeat; /* No repetir la imagen si es más pequeña que el área */
 }
 
-.extra{
+.extra {
     color: white;
     padding: 1%;
     border-radius: 10px;
 }
 
-.detalles{
+.detalles {
     color: white;
     padding: 1%;
     border-radius: 10px;
+}
+
+
+
+    /* Reduce el tamaño de las tarjetas */
+.card {
+    width: 100%; /* Asegura que las tarjetas ocupen todo el espacio disponible */
+    max-width: 250px; /* Establece un ancho máximo para cada tarjeta */
+    margin-bottom: 20px; /* Reduce el espacio entre las tarjetas */
+    border-radius: 8px; /* Añade bordes redondeados a las tarjetas */
+}
+
+/* Ajusta el tamaño de las imágenes de los productos */
+.card-img-top {
+    width: 100%;
+    height: auto; /* Ajusta la altura de la imagen */
+    object-fit: cover; /* Mantiene la imagen proporcional */
+}
+
+/* Ajusta el padding de la tarjeta para que no haya tanto espacio */
+.card-body {
+    padding: 20px;
+    height: 20px !important;
+}
+
+
+/* Establece un alto máximo para los contenedores de las tarjetas si es necesario */
+.card-body h5, .card-body p {
+    font-size: 0.9rem; /* Ajusta el tamaño de la fuente */
+    line-height: 1.2;
+}
+
+.card-footer .btn-outline {
+    font-size: 0.8rem; /* Ajusta el tamaño de la fuente del botón */
 }

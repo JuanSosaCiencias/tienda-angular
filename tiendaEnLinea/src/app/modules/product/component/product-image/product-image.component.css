@@ -5,7 +5,7 @@
 .edit-product-image{
     position: relative;
     color: rgb(136, 136, 255);
-    top: -22px;
+    /* top: -22px; */
     cursor: pointer;
 }
 
@@ -32,5 +32,5 @@
 
 .basura{
     position: relative;
-    left : 90%;
+    left : 15%;
 }
