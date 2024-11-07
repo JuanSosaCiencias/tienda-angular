@@ -87,7 +87,7 @@ export class ProductImageComponent {
         console.log(this.product);
       },
       error: (e) => {
-        console.log(e);
+        console.error(e);
         this.loading = false;
       }
     });
@@ -103,7 +103,7 @@ export class ProductImageComponent {
         this.loading = false;
       },
       error: (e) => {
-        console.log(e);
+        console.error(e);
         this.loading = false;
       }
     });
@@ -140,7 +140,7 @@ export class ProductImageComponent {
             this.getProduct();
           },
           error: (e) => {
-            console.log(e);
+            console.error(e);
             this.swal.errorMessage(e.error.message);
           }
         });
@@ -202,7 +202,7 @@ export class ProductImageComponent {
         this.loading = false;
       },
       error: (e) => {
-        console.log(e);
+        console.error(e);
         this.loading = false;
       }
     })
