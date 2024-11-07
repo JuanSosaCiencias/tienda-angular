@@ -1,0 +1,17 @@
+.custom-header {
+    background-image: url('/assets/fondo.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.extra{
+    color: white;
+    padding: 1%;
+    border-radius: 10px;
+}
+
+.detalles{
+    color: white;
+    padding: 1%;
+    border-radius: 10px;
+}
