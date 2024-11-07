@@ -31,9 +31,9 @@ export class RegisterComponent {
     this.showLoading = false;
   }
   ngOnInit(): void {
-    if (this.authenticationService.isUserLoggedIn()) {
-      this.router.navigateByUrl('/secured');
-    }
+    // if (this.authenticationService.isUserLoggedIn()) {
+    //   this.router.navigateByUrl('/secured');
+    // }
   }
   public onRegister(): void {
     var usuarioFormValue  = this.registerForm.value as User;

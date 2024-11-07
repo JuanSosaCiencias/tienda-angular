@@ -20,11 +20,11 @@ import { ProductImageComponent } from './modules/product/component/product-image
 export const routes: Routes = [
     // Asociamos '/categoria' a el componente de Angular que creamos en la carpeta
     // cuando el usuario visite '/categoria' entonces Angular renderiza CategoryComponent
-    {
-        path: '',
-        redirectTo: '/category',
-        pathMatch: 'full'
-    },
+    // {
+    //     path: '',
+    //     redirectTo: '/category',
+    //     pathMatch: 'full'
+    // },
     { 
         path: "category", 
         component: CategoryComponent 
@@ -45,17 +45,17 @@ export const routes: Routes = [
         path: 'product/:gtin',
         component: ProductImageComponent
     },
-    {
-        path: 'login',
-        component: LoginComponent
-    },
-    {
-        path: 'register',
-        component: RegisterComponent
-    },
+    // {
+    //     path: 'login',
+    //     component: LoginComponent
+    // },
+    // {
+    //     path: 'register',
+    //     component: RegisterComponent
+    // },
     {
         path: 'secured',
         component: SecuredComponent, 
-        canActivate: [authenticationGuard]
+        // canActivate: [authenticationGuard]
     }
 ];
