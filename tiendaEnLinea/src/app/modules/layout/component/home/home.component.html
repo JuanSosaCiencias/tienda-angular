@@ -3,54 +3,47 @@
     
     <body>
         <!-- Header-->
-        <header class="bg-dark py-5 custom-header">
-            <div class="container px-4 px-lg-5 my-5">
+        <header class="bg-dark py-5 custom-header full-width">
+            <div class="px-4 px-lg-5 my-5">
                 <div class="text-center text-white">
-                    <img src="assets/logo4.png" alt="..." >
+                    <img src="assets/logo4.png" alt="...">
                 </div>
             </div>
-        </header>        
+        </header>
+        
+          
+        
         
         <!-- Section-->
         <section class="py-5">
 
             <!-- home.component.html -->
-            <div class="container px-4 px-lg-5 mt-5">
+            <div class="container-fluid px-0 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: page }" class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" [src]="productImages[product.product_id] || 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg'" alt="{{ product.product }}" />
-                            
-                            <!-- Product details-->
-                            <div class="card-body">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{ product.product }}</h5>
-                                    <!-- Product price-->
-                                    <p>{{ product.price | currencyFormat }}</p>
-                                </div>
+                        <a class="card h-100 text-decoration-none" [id]="'card-' + product.product_id" href="#" [attr.aria-label]="'Ver detalles de ' + product.product">
+                          <img class="card-img-top" [src]="productImages[product.product_id]" alt="{{ product.product }}" />
+                          <div class="card-body d-flex flex-column justify-content-center text-center">
+                            <div class="text-center">
+                              <h5 class="fw-bolder">{{ product.product }}</h5>
+                              <p>{{ product.price | currencyFormat }}</p>
                             </div>
-                            
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                    <a class="btn btn-outline mt-auto" href="#">Ver detalles</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                          </div>
+                        </a>
+                      </div>
+                      
                 </div>
-
                 <!-- Pagination controls -->
                 <div class="d-flex justify-content-center">
-                    <pagination-controls (pageChange)="page = $event" [totalItems]="products.length" [itemsPerPage]="itemsPerPage" [currentPage]="page"></pagination-controls>
+                    <pagination-controls (pageChange)="onPageChange($event)" [totalItems]="products.length" [itemsPerPage]="itemsPerPage" [currentPage]="page"></pagination-controls>
                 </div>
+
             </div>
+            
             
         </section>
         <!-- Footer-->
-        <footer class="bg-dark text-center text-white">
+        <footer class="bg-dark text-center text-white full-width">
             <div class="extra">
                 <div class="container"><p class="m-0 text-center text-white"> &copy; JSR_Mario 2024</p></div>
             </div>

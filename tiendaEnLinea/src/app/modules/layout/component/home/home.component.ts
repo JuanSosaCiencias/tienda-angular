@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ProductImageService } from '../../../product/_service/product-image.service';
 import { CurrencyFormatPipe } from '../../../../currency.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';  // Importa el módulo de paginación
+import { AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ import { NgxPaginationModule } from 'ngx-pagination';  // Importa el módulo de 
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, AfterViewChecked {
   products: Product[] = [];
   productImages: { [key: number]: string } = {}; // Aquí almacenamos las imágenes por product_id
   loading = false; // loading request
@@ -33,33 +34,89 @@ export class HomeComponent implements OnInit {
     this.productService.getActiveProducts().subscribe({
       next: (v) => {
         this.products = v;
-        this.loadProductImages(); // Cargar las imágenes después de obtener los productos
+        this.loadProductImages();
         this.loading = false;
       },
       error: (e) => {
         this.loading = false;
         console.error(e);
-        this.swal.errorMessage(e.error!.message); // show message
+        this.swal.errorMessage(e.error!.message);
       }
     });
   }
-
+   
+  // Metodo que se ejecuta después de que se actualiza la vista 
+  ngAfterViewChecked(): void {
+    this.products.forEach(product => {
+      if (this.productImages[product.product_id]) {
+        this.setImageBackgroundColor(this.productImages[product.product_id], product.product_id);
+      }
+    });
+  }
+  
   loadProductImages(): void {
     this.products.forEach(product => {
       this.productImageService.getProductImages(product.product_id).subscribe({
         next: (images) => {
           if (images && images.length > 0) {
-            this.productImages[product.product_id] = images[0].image; // Asignamos la primera imagen encontrada
+            this.productImages[product.product_id] = images[0].image;
+            this.setImageBackgroundColor(images[0].image, product.product_id);
           } else {
-            this.productImages[product.product_id] = '/assets/product-default.jpg'; // Asigna una imagen por defecto
+            this.productImages[product.product_id] = '/assets/product-default.jpg';
           }
         },
         error: (e) => {
           console.error(e);
-          this.productImages[product.product_id] = '/assets/product-default.jpg'; // Asigna una imagen por defecto en caso de error
+          this.productImages[product.product_id] = '/assets/product-default.jpg';
         }
       });
     });
   }
+
+  // Método que se ejecuta cuando se cambia de página para cambiar el color
+  onPageChange(newPage: number): void {
+    this.page = newPage;
+    // Vuelve a aplicar el fondo a las tarjetas en la nueva página
+    setTimeout(() => {
+      this.products.forEach(product => {
+        if (this.productImages[product.product_id]) {
+          this.setImageBackgroundColor(this.productImages[product.product_id], product.product_id);
+        }
+      });
+    }, 0);
+  }
+  
+  
+  setImageBackgroundColor(imageSrc: string, productId: number): void {
+    const img = new Image();
+    img.src = imageSrc;
+  
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext('2d');
+      if (ctx) {
+        ctx.drawImage(img, 0, 0);
+        const data = ctx.getImageData(0, 0, 1, 1).data; // Color de la esquina superior izquierda
+        const backgroundColor = `rgb(${data[0]}, ${data[1]}, ${data[2]})`;
+        const complementColor = `rgb(${255 - data[0]}, ${255 - data[1]}, ${255 - data[2]})`;
+  
+        // Aplica el color de fondo a la tarjeta
+        const cardElement = document.getElementById(`card-${productId}`);
+        cardElement?.style.setProperty('background-color', backgroundColor);
+  
+        // Aplica el color complementario al texto dentro de la tarjeta
+        cardElement?.querySelectorAll('.card-body, .card-body h5, .card-body p').forEach((textElement) => {
+          (textElement as HTMLElement).style.color = complementColor;
+        });
+      }
+    };
+  }
+  
+  
+
+
+
 }
   

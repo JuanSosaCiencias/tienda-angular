@@ -151,10 +151,10 @@ export class ProductImageComponent {
   // img
   fileChangeHandler($event: any) {
     this.ngxService.open($event, {
-      aspectRatio: 1 / 1,
+      // aspectRatio: 1 / 1,
       autoCropArea: 1,
-      resizeToWidth: 360,
-      resizeToHeight: 360,
+      roundCropper: true,
+      autoCrop: true,
     }).subscribe(data => {
       this.updateProductImage(data.base64!);
     });

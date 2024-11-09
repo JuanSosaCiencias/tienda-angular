@@ -10,7 +10,7 @@
     width: auto;
     height: 60px;
     margin-right: auto;
-    margin-left: auto;
+    margin-left: 30%;
 }
 /* dropdown options  */
 .nav-dropdown-menu{
@@ -21,6 +21,7 @@
 }
 .nav-dropdown-item{
     color: white !important;
+
 }
 .nav-dropdown-item:hover{
     background-color: white;
