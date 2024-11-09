@@ -8,6 +8,8 @@ import { ProductImageService } from '../../_service/product-image.service';
 import { ProductService } from '../../_service/product.service';
 import { CurrencyFormatPipe } from '../../../../currency.pipe';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../../../invoice/_service/cart.service';
+import { Cart } from '../../../invoice/_model/cart';
 
 @Component({
   selector: 'app-product-image-user',
@@ -24,6 +26,8 @@ export class ProductImageUserComponent  {
   images: ProductImage[] = []; // images
   productImage: ProductImage = new ProductImage();
   product_id: number = 0; // product id
+  cart: Cart = new Cart(); // cart
+  selectedQuantity: number = 1; 
 
   loading = false; // loading request
   swal: SwalMessages = new SwalMessages(); // swal messages
@@ -31,7 +35,8 @@ export class ProductImageUserComponent  {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService, // servicio product de API
-    private productImageService: ProductImageService, // servicio product-image de API
+    private productImageService: ProductImageService, // servicio product-image de 
+    private cartService: CartService // servicio cart de API
   ) { }
 
   ngOnInit(){
@@ -51,7 +56,7 @@ export class ProductImageUserComponent  {
         this.product_id = v.product_id;
         this.getProductImages();
         this.loading = false;
-        console.log(this.product);
+        // console.log(this.product);
       },
       error: (e) => {
         console.error(e);
@@ -102,6 +107,32 @@ export class ProductImageUserComponent  {
       }
     };
   }
+
+  addToCart(product: Product, quantity: number) {
+    if (quantity > product.stock) {
+      this.swal.errorMessage("La cantidad seleccionada excede el stock disponible.");
+      return;
+    }
+    // Crea un objeto Cart basado en la información del producto
+    this.loading = true;  
+    this.cart.gtin = product.gtin;
+    this.cart.quantity = quantity;
+    this.product.stock = product.stock - quantity;
+    console.log(this.cart);
+    // Llama al servicio para agregar al carrito
+    this.cartService.addToCart(this.cart).subscribe({
+      next: (v) => {
+        this.loading = false;
+        this.swal.successMessage("Agregados "+ quantity + " productos al carrito");
+      },
+      error: (e) => {
+        this.loading = false;
+        console.error(e);
+        this.swal.errorMessage("Error al agregar producto al carrito");
+      }
+    });
+  }
+  
 
 
 }
