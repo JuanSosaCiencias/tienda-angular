@@ -55,3 +55,8 @@
     width: 100vw;
     margin-left: calc((98% - 100vw) / 2); /* Centra el header y asegura que ocupe todo el ancho 98 porque si no se mueve a los lados (?)*/
 }
+
+.clickable-card {
+    cursor: pointer;
+  }
+  

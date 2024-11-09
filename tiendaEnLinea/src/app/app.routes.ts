@@ -13,11 +13,16 @@ import { ProductImageComponent } from './modules/product/component/product-image
 import { HomeComponent } from './modules/layout/component/home/home.component';
 import { InvoiceDetailComponent } from './modules/invoice/component/invoice-detail/invoice-detail.component';
 import { InvoiceComponent } from './modules/invoice/component/invoice/invoice.component';
+import { ProductImageUserComponent } from './modules/product/component/product-image-user/product-image-user.component';
 
 export const routes: Routes = [
     {
         path : '',
         component : HomeComponent
+    },
+    {
+        path: 'userProduct/:gtin',
+        component: ProductImageUserComponent
     },
     { 
         path: "category", 

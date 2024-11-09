@@ -7,6 +7,7 @@ import { ProductImageService } from '../../../product/_service/product-image.ser
 import { CurrencyFormatPipe } from '../../../../currency.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';  // Importa el módulo de paginación
 import { AfterViewChecked } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   constructor(
     private productService: ProductService,
     private productImageService: ProductImageService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -114,7 +116,9 @@ export class HomeComponent implements OnInit, AfterViewChecked {
     };
   }
   
-  
+  showProduct(gtin: string){
+    this.router.navigate(['userProduct/' + gtin]);
+  }
 
 
 
