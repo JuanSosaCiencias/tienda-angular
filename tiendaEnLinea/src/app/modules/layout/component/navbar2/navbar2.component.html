@@ -20,7 +20,7 @@
             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categorías</a>
             <div class="dropdown-menu nav-dropdown-menu">
               @for(category of categories; track category.category_id) {
-                <a class="dropdown-item nav-dropdown-item" routerLink="#">{{ category.category }}</a>
+                <a class="dropdown-item nav-dropdown-item" (click)="showCategoryProducts(category.category_id)">{{ category.category }}</a>
               }
             </div>
           </li>
