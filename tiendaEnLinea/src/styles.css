@@ -12343,7 +12343,12 @@ textarea.form-control-lg {
 .bd-mode-toggle .dropdown-menu .active .bi {
   display: block !important;
 }
+
 main > .container {
-  padding: 80px 15px 0;
-  height: 95.2vh;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
+
+
+
+

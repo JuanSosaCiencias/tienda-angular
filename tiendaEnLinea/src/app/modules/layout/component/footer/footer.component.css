@@ -1,0 +1,52 @@
+footer {
+    background: linear-gradient(to right, #343a40, #212529);  /* Gradiente de gris oscuro */
+    color: white;  /* Texto blanco */
+    text-align: center;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+  }
+  
+  .extra {
+    padding: 10px 20px; /* Espaciado más grande */
+    border-radius: 5px;
+    margin: 0 auto;
+    max-width: 1200px;  /* Limitar el ancho máximo del footer */
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 400;
+  }
+  
+  footer .container {
+    /* display: flex;z */
+    justify-content: center;
+    align-items: center;
+  }
+  
+  footer .container p {
+    font-size: 14px;
+    color: #d1d1d1;  /* Color más suave para el texto */
+  }
+  
+  /* Agregar sombra para un toque elegante */
+  footer {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+  }
+
+  .full-width {
+    width: 100%;
+    padding: 0 10px;  /* Espacio de borde para que no toque los extremos de la pantalla */
+    margin: 0 auto;   /* Centrado automático */
+  }
+  
+  @media (max-width: 768px) {
+    .full-width {
+      width: 100%; /* Asegura que ocupe todo el ancho en pantallas pequeñas */
+      padding: 0 20px; /* Un poco más de espacio en pantallas pequeñas */
+    }
+  }
+  
+  
