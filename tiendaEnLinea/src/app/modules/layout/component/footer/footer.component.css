@@ -1,6 +1,5 @@
 footer {
-    background: linear-gradient(to right, #343a40, #212529);  /* Gradiente de gris oscuro */
-    color: white;  /* Texto blanco */
+    background-color: #2c3e50;
     text-align: center;
     position: relative;
     width: 100%;
@@ -28,7 +27,7 @@ footer {
   
   footer .container p {
     font-size: 14px;
-    color: #d1d1d1;  /* Color más suave para el texto */
+    /* color: #d1d1d1;  Color más suave para el texto */
   }
   
   /* Agregar sombra para un toque elegante */
