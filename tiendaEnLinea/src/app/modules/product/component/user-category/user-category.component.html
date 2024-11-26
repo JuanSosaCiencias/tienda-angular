@@ -15,7 +15,8 @@
         <section class="py-5">
 
             <!-- home.component.html -->
-            <div class="container-fluid px-0 mt-5">
+            @if(products.length!=0){
+              <div class="container-fluid px-0 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div *ngFor="let product of products | paginate: { itemsPerPage: itemsPerPage, currentPage: page }" class="col mb-5">
                         <div class="card h-100 text-decoration-none clickable-card" [id]="'card-' + product.product_id" [attr.aria-label]="'Ver detalles de ' + product.product" (click)="showProduct(product.gtin)">
@@ -36,16 +37,14 @@
                 </div>
 
             </div>
+            }@else {
+              <div class="d-flex justify-content-center sin-productos">
+                <h1>No hay productos en esta categoría</h1>
+              </div>
+            }
             
             
         </section>
-
-        <!-- Footer-->
-        <footer class="bg-dark text-center text-white full-width">
-            <div class="extra">
-                <div class="container"><p class="m-0 text-center text-white"> &copy; JSR_Mario 2024</p></div>
-            </div>
-        </footer>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->

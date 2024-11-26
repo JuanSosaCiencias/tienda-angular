@@ -28,6 +28,9 @@ export class ProductImageUserComponent  {
   product_id: number = 0; // product id
   cart: Cart = new Cart(); // cart
   selectedQuantity: number = 1; 
+  loggedIn = false; // para poder verificar si ya puede agregar al carrito
+  isAdmin = false; // para verificar si tiene carrito (Admin no tiene carrito)
+
 
   loading = false; // loading request
   swal: SwalMessages = new SwalMessages(); // swal messages
@@ -45,6 +48,17 @@ export class ProductImageUserComponent  {
       this.getProduct();
     }else{
       this.swal.errorMessage("Gtin inválido"); 
+    }
+    if(localStorage.getItem("token")){
+      this.loggedIn = true;
+    }
+    if(localStorage.getItem("user")){
+      let user = JSON.parse(localStorage.getItem("user")!);
+      if(user.rol == "ADMIN"){
+        this.isAdmin = true;
+      }else{
+        this.isAdmin = false;
+      }
     }
   }
 

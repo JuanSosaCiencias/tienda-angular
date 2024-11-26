@@ -69,3 +69,21 @@
     text-transform: uppercase; /* Texto en mayúsculas */
     letter-spacing: 2px; /* Espaciado entre letras */
 }
+
+.sin-productos {
+    background-color: var(--bs-warning); /* Usamos el color de advertencia de Bootstrap, adaptado al tema */
+    padding: 20px; /* Espaciado alrededor del texto */
+    border-radius: 8px; /* Bordes redondeados */
+    border: 1px solid var(--bs-warning); /* Utiliza el mismo color para el borde */
+    max-width: 600px; /* Ancho máximo del contenedor */
+    margin: 50px auto; /* Centrando el bloque vertical y horizontalmente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.sin-productos h1 {
+    color: var(--bs-emphasis-color); /* Utiliza el color oscuro estándar de Bootstrap */
+    font-family: 'Arial', sans-serif; /* Fuente moderna */
+    text-align: center; /* Alineación centrada */
+    font-size: 24px; /* Tamaño de fuente adecuado */
+    margin: 0; /* Eliminar márgenes por defecto */
+}
