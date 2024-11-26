@@ -2,14 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap");
 /* DWF2025-1 STYLES */
 
-
-/*
-.body-content{
-  /* max-width: 3840px; 
-  /* margin: auto; 
-  margin-top: 8px;
-} */
-
 .navbar-content{
   max-width: 3840px;
   margin: auto;
@@ -61,22 +53,16 @@
 /* ul dropdown  */
 
 .dropdown-button{
-  color: rgb(255, 255, 255) !important;
   border: none;
   background-color: transparent;
 }
 
 .dropdown-item{
-  color: rgb(255, 255, 255) !important;
   cursor: pointer;
 }
 
 .dropdown-item:hover{
   text-decoration: underline;
-}
-
-.update-item{
-  color: white !important;
 }
 
 .enable-item{

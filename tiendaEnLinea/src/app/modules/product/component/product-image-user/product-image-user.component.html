@@ -50,9 +50,16 @@
           <div class="product-title">
             {{ product.product }}
           </div>
-          <div class="product-price">
-            {{ product.price | currencyFormat }}
-          </div>
+          @if(product.stock != 0){
+            <div class="product-price">
+              {{ product.price | currencyFormat }}
+            </div>
+          }@else {
+            <div class="product-price">
+              AGOTADO
+            </div>
+          } 
+          
           <div class="product-description">
             {{ product.description }}
           </div>
@@ -68,7 +75,7 @@
           <!-- Botón agregar al carrito -->
           <button type="button" class="btn btn-primary btn-add-to-cart" 
                   (click)="addToCart(product, selectedQuantity)" 
-                  [disabled]="loading || selectedQuantity > product.stock"
+                  [disabled]="(loading || selectedQuantity > product.stock) || !loggedIn || isAdmin"
                   title="Agregar este producto al carrito" aria-label="Agregar al carrito">
             <i class="ph" [ngClass]="loading ? 'ph-spinner' : 'ph-shopping-cart'" aria-hidden="true"></i>
             {{ loading ? 'Cargando...' : 'Agregar al carrito' }}
