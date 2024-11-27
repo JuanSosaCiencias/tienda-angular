@@ -70,7 +70,6 @@ export class ProductImageUserComponent  {
         this.product_id = v.product_id;
         this.getProductImages();
         this.loading = false;
-        // console.log(this.product);
       },
       error: (e) => {
         console.error(e);

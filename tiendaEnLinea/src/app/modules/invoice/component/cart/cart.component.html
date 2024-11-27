@@ -1,0 +1,71 @@
+<div class="container mt-4">
+  <h2>Carrito de Compras</h2>
+
+  @if (loading) {
+    <div class="text-center">
+      <img src="assets/loading.gif" class="img-loading" alt="Cargando...">
+    </div>
+  } @else if (carts.length === 0) {
+    <div class="alert alert-info mt-4">Tu carrito está vacío.</div>
+  } @else {
+    <div class="row">
+      <!-- Columna izquierda: Lista del carrito -->
+      <div class="col-md-8">
+        <div class="cart-list">
+          @for (cart of carts; track cart.cart_id; let i = $index) {
+            <div class="card mb-3">
+              <div class="row g-0 align-items-center">
+                <!-- Contenedor de la imagen con color dinámico -->
+                <div id="image-container-{{ cart.cart_id }}" class="col-md-3 image-container">
+                  <img [src]="cart.image" class="img-fluid rounded-start custom-img" alt="{{ cart.product.product }}" (click)="showProduct(cart.product.gtin)">
+                </div>
+                <div class="col-md-6">
+                  <div class="card-body">
+                    <h5 class="card-title" (click)="showProduct(cart.product.gtin)">{{ cart.product.product }}</h5>
+                    <p class="card-text">Precio: {{ cart.product.price | currencyFormat }}</p>
+                    <p class="card-text">Total: {{ (cart.product.price * cart.quantity) | currencyFormat }}</p>
+                  </div>
+                </div>
+                <div class="col-md-3 d-flex align-items-center justify-content-end controles">
+                  <div class="d-flex align-items-center">
+                    <span class="me-2">Cantidad:</span>
+                    <button class="btn btn-outline-secondary btn-sm" (click)="updateQuantity(cart, -1)" [disabled]="cart.quantity <= 1">-</button>
+                    <span class="mx-2">{{ cart.quantity }}</span>
+                    <button class="btn btn-outline-secondary btn-sm" (click)="updateQuantity(cart, 1)" [disabled]="cart.quantity >= cart.product.stock">+</button>
+                  </div>
+                  <button class="btn btn-danger btn-sm ms-3" (click)="removeFromCart(cart.cart_id)">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="text-end mt-4">
+          <button class="btn btn-danger" (click)="clearCart()">Vaciar Carrito</button>
+        </div>
+      </div>
+      
+
+      <!-- Columna derecha: Resumen de compra -->
+      <div class="col-md-4">
+        <div class="card p-3">
+          <h5 class="card-title">Resumen de Compra</h5>
+          <p class="card-text">
+            Subtotal: {{ subtotal | currencyFormat }}
+          </p>
+          <p class="card-text">
+            Descuentos: -{{ discount | currencyFormat }}
+          </p>
+          <p class="card-text">
+            Costo de Envío: {{ shipping | currencyFormat }}
+          </p>
+          <hr>
+          <h5 class="card-text">
+            Total: {{ (subtotal - discount + shipping) | currencyFormat }}
+          </h5>
+          <button class="btn btn-primary w-100 mt-3" (click)="checkout()">Comprar</button> 
+          <!-- Por tiempo ya no voy a hacer la parte de resumen de compra en un modal -->
+        </div>
+      </div>
+    </div>
+  }
+</div>
