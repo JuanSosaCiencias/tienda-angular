@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Category } from '../../../product/_model/category';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { CategoryService } from '../../../product/_service/category.service';
@@ -7,6 +7,7 @@ import { LoginComponent } from "../../../auth/component/login/login.component";
 import { RegisterComponent } from "../../../auth/component/register/register.component";
 import { SharedModule } from '../../../../shared/shared-module';
 import { Router } from '@angular/router';
+import { CartService } from '../../../invoice/_service/cart.service';
 declare var $: any; // JQuery
 @Component({
   selector: 'app-navbar2',
@@ -20,15 +21,19 @@ declare var $: any; // JQuery
   styleUrl: './navbar2.component.css'
 })
 export class Navbar2Component {
-  categories: Category[] = []; // categories list
+  categories: Category[] = []; 
   loggedIn = false;
   isAdmin = false;
-  swal: SwalMessages = new SwalMessages(); // swal messages
+  swal: SwalMessages = new SwalMessages(); 
+  cartItemCount = 0;
+
   constructor(
     private categoryService: CategoryService,
     private servicioAutenticacion: AuthenticationService,
     private router: Router,
+    private cartService: CartService
   ){}
+
   ngOnInit(){
     if(localStorage.getItem("token")){
       this.loggedIn = true;
@@ -40,6 +45,11 @@ export class Navbar2Component {
       }else{
         this.isAdmin = false;
       }
+    }
+    if(!this.isAdmin && this.loggedIn){
+      this.cartService.getCartItemCount().subscribe(count => {
+        this.cartItemCount = count; 
+      });
     }
     this.getCategories();
   }
