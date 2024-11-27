@@ -21,6 +21,10 @@ export class CartService {
     return this.cartItemCount.asObservable();
   }
 
+  resetCount(): void {
+    this.cartItemCount.next(0);
+  }
+
   private loadCartItemCount() {
     this.getCart().subscribe(carts => {
       const itemCount = carts.reduce((sum: number, cart: any) => sum + cart.quantity, 0);
