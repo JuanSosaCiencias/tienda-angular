@@ -55,3 +55,16 @@
     margin-left: -16px; 
     margin-right: 16px;
 }
+
+.badge {
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: #fff;
+    background-color: #dc3545;
+    border-radius: 50%;
+  }
+  

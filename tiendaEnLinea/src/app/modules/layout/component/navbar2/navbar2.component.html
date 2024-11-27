@@ -47,10 +47,18 @@
         </form>
         <!-- shopping cart  -->
         @if (loggedIn) {
-          <a class="nav-link" routerLink="#" role="button">
+          <a class="nav-link position-relative" routerLink="/cart" role="button">
             <i class="ph ph-shopping-cart i-nav"></i>
+            <span
+              *ngIf="cartItemCount > 0"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              style="font-size: 0.75rem;"
+            >
+              {{ cartItemCount }}
+            </span>
           </a>
-        }@else {
+        }
+        @else {
           <ul class="navbar-nav">
             <a class="nav-link nav-register" (click)="showRegisterModal()">Registrarse</a>
           </ul>
@@ -71,6 +79,7 @@
    
                 <div class="dropdown-menu nav-dropdown-menu nav-dropdown-menu-user">
                     <a class="dropdown-item nav-dropdown-item" routerLink="#">Perfil</a>
+                    <a class="dropdown-item nav-dropdown-item" routerLink="/invoice">Mis Pedidos</a>
                     <!-- <a class="dropdown-item nav-dropdown-item" routerLink="#">Configuración</a> -->
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item nav-dropdown-item" (click)="logout()">Cerrar sesión</a>

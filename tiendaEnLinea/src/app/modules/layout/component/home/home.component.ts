@@ -119,8 +119,5 @@ export class HomeComponent implements OnInit, AfterViewChecked {
   showProduct(gtin: string){
     this.router.navigate(['userProduct/' + gtin]);
   }
-
-
-
 }
   
