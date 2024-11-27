@@ -1,0 +1,47 @@
+  .card-header {
+    font-weight: bold;
+  }
+  
+  .card-body p {
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Table styles */
+  table {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+  }
+  
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+  }
+  
+  /* Totals section */
+  .card-body p {
+    font-size: 1rem;
+  }
+  
+  .card-body p span {
+    font-weight: 500;
+  }
+  
+  .fs-5 {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+
+  .totals-fixed {
+    position: sticky;
+    bottom: 0;
+    background-color: white;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+  }
+  
+  
+
+  
