@@ -37,8 +37,8 @@ export class CartComponent {
     this.cartService.getCart().subscribe({
       next: (v) => {
         this.carts = v;
-        this.subtotal = this.getSubtotal();
         this.loading = false;
+        this.subtotal = this.getSubtotal();
         this.loadCartImages();
       },
       error: (e) => {
@@ -71,6 +71,8 @@ export class CartComponent {
         this.carts = this.carts.filter(cart => cart.cart_id !== cartId);
         this.loading = false;
         this.swal.successMessage("Producto eliminado del carrito");
+        this.subtotal = this.getSubtotal();
+        this.loadCartImages();
       },
       error: (e) => {
         console.error(e);
@@ -104,6 +106,8 @@ export class CartComponent {
         this.swal.successMessage(
           `Cantidad ${increment > 0 ? "aumentada" : "disminuida"} exitosamente.`
         );
+        this.subtotal = this.getSubtotal();
+        this.loadCartImages();
       },
       error: (e) => {
         console.error(e);
@@ -141,6 +145,10 @@ export class CartComponent {
         this.swal.errorMessage("Error al procesar la compra");
       }
     });
+  }
+
+  ngAfterViewChecked(): void {
+    this.loadCartImages();
   }
 
   loadCartImages() {
