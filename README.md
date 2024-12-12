@@ -36,6 +36,13 @@ Este proyecto utiliza las siguientes herramientas y tecnologías:
    ```bash
    npm install
    ```
+   
+   En este paso es posible que te salga el siguiente error:
+   ```bash
+       [ERROR] Could not resolve "~cropperjs/dist/cropper.css"
+   ```
+
+   Para resolverlo necesitas quitarle el ´~´ al cropper en: *node_modules/ngx-photo-editor/photo-editor.css*
 
 ---
 
