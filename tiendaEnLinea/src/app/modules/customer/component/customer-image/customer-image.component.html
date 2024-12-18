@@ -1,0 +1,86 @@
+<div class="card-header">
+    <div class="btn-return" (click)="redirect('customer')">
+        <i class="ph ph-arrow-circle-left"></i>
+        Regresar
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <!-- customer image  -->
+   
+        <div class="col-md-4">
+            <div class="card">
+              <!-- image  -->
+              <div class="card-body-customer text-center">
+                <!-- @if (customer.image.image) {
+                    <img src="{{ customer.image.image }}" class="customer-image">  
+                }@else {
+                    <img src="assets/user-logo.png" class="customer-image">  
+                } -->
+                <img src="{{ customer.image.image ? customer.image.image: 'assets/user-logo.png' }}" class="customer-image">
+              </div>
+              <!-- button  -->
+              <div class="text-center">
+                  <label for="uploadImage">
+                      <input type="file" (change)="fileChangeHandler($event)" id="uploadImage" class="d-none">
+                      <div class="edit-customer-image ">
+                        <i class="ph ph-note-pencil icon-text-button"></i>
+                        Editar imagen
+                      </div>
+                  </label>
+              </div>
+            </div>
+        </div>
+   
+        <!-- customer data  -->
+   
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body-customer">
+                    <!-- name  -->
+                    <div class="customer-title">
+                        {{ customer.name + " " + customer.surname }}
+                    </div>
+                    <table class="table">
+                        <tbody>
+                           
+                            <!-- rfc  -->
+                            <tr>
+                                <th class="col-md-4">RFC</th>
+                                <td>{{ customer.rfc }}</td>
+                            </tr>
+                               
+                            <!-- mail  -->
+                            <tr>
+                                <th class="col-md-4">Correo electrónico</th>
+                                <td>{{ customer.mail }}</td>
+                            </tr>
+                               
+                            <!-- region  -->
+                            <tr>
+                                <th class="col-md-4">Región</th>
+                                <td>{{ customer.region }}</td>
+                            </tr>
+                           
+                            <!-- rfc  -->
+                            <tr>
+                                <th class="col-md-4">Dirección</th>
+                                <td>{{ customer.address }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- buttons  -->
+                    <button type="button" class="btn btn-primary btn-edith">
+                        <i class="ph ph-note-pencil"></i>
+                        Editar
+                    </button>
+                    <button type="button" class="btn btn-danger btn-delete">
+                        <i class="ph ph-trash"></i>
+                        Eliminar
+                    </button>
+                </div>
+            </div>
+        </div>
+   
+    </div>
+</div>

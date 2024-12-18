@@ -1,0 +1,52 @@
+.card-body-product{
+    padding: 30px;
+}
+
+.edit-product-image{
+    position: relative;
+    color: rgb(136, 136, 255);
+    /* top: -22px; */
+    cursor: pointer;
+}
+
+.cursor-pointer{
+    cursor: pointer;
+}
+
+.product-title{
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.btn-edith, .btn-delete{
+    width: 140px;
+    margin-right: 24px;
+}
+
+.btn-save{
+    margin-left: 43%;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+
+.basura{
+    position: relative;
+    left : 15%;
+}
+
+/* Aseguramos que la imagen ocupe todo el ancho de la ventana */
+.card-img-top {
+    width: 100vw;  /* 100% del ancho de la ventana */
+    height: auto;  /* Mantiene la proporción de la imagen */
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+    display: block;  /* Elimina cualquier espacio debajo de la imagen */
+}
+
+/* Usamos container-fluid para permitir que el contenedor ocupe todo el ancho */
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+
