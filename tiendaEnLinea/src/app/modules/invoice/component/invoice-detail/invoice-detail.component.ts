@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from '../../_model/invoice';
 import { SwalMessages } from '../../../../shared/swal-messages';
 import { InvoiceService } from '../../_service/invoice.service';
+import { CurrencyFormatPipe } from '../../../../currency.pipe';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-invoice-detail',
   standalone: true,
-  imports: [],
+  imports: [CurrencyFormatPipe, DatePipe],
   templateUrl: './invoice-detail.component.html',
   styleUrl: './invoice-detail.component.css'
 })
@@ -15,11 +17,13 @@ export class InvoiceDetailComponent {
   invoice: Invoice = new Invoice();
   loading = false; // loading request
   swal: SwalMessages = new SwalMessages(); // swal messages
+
   constructor(
     private invoiceService: InvoiceService,
     private route: ActivatedRoute,
     private router: Router,
   ){}
+
   ngOnInit(){
     this.id = +this.route.snapshot.paramMap.get('id')!;
     if(this.id){
@@ -28,6 +32,7 @@ export class InvoiceDetailComponent {
       this.swal.errorMessage("El id de la factura es inválido"); 
     }
   }
+
   getInvoice(){
     this.loading = true;
     this.invoiceService.getInvoice(this.id).subscribe({
@@ -41,5 +46,13 @@ export class InvoiceDetailComponent {
         this.loading = false;
       }
     });
+  }
+
+  public navigateToInvoices(): void {
+    this.router.navigate(['/invoice']);
+  }
+
+  downloadInvoice(){
+    console.log("Metodo no implementado");
   }
 }

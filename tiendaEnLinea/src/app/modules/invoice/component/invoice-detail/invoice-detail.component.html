@@ -1,1 +1,94 @@
-<p>Revisa en la consola el detalle de la factura :)</p>
+<div class="container mt-5">
+    @if(loading) {
+        <div class="text-center" >
+          <img src="assets/loading.gif" class="img-loading" alt="">
+        </div>
+      }
+    <!-- Encabezado -->
+    <div class="row mb-4">
+      <div class="col">
+        <h1 class="fw-bold">Detalles de la Factura</h1>
+      </div>
+      <div class="col text-end">
+        <button class="btn btn-primary me-2" (click)="downloadInvoice()">
+          <i class="fas fa-download"></i> Descargar factura
+        </button>
+        <button class="btn btn-secondary" (click)="navigateToInvoices()">Volver a facturas</button>
+      </div>      
+    </div>
+  
+    <!-- Información general -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <p><strong>ID de Factura:</strong> {{ invoice.invoice_id }}</p>
+            <p><strong>RFC:</strong> {{ invoice.rfc }}</p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <p><strong>Fecha de creación:</strong> {{ invoice.created_at | date:'full' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Detalles de los artículos -->
+    <div class="card mb-4">
+      <div class="card-header">
+        <h5 class="fw-bold">Artículos</h5>
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-striped mb-0">
+          <thead class="table-light">
+            <tr>
+              <th>#</th>
+              <th>Gtin</th>
+              <th>Cantidad</th>
+              <th>Precio unitario</th>
+              <th>Subtotal</th>
+              <th>Impuestos</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(item of invoice.items; track item.item_id; let i = $index){
+                <tr>
+                    <td>{{ i + 1 }}</td> <!-- Índice del item -->
+                    <td>{{ item.gtin }}</td> <!-- GTIN o cualquier otra propiedad que se use como nombre -->
+                    <td>{{ item.quantity }}</td> <!-- Cantidad del item -->
+                    <td>{{ item.unit_price | currencyFormat }}</td> <!-- Precio unitario -->
+                    <td>{{ item.subtotal | currencyFormat }}</td> <!-- Subtotal del item -->
+                    <td>{{ item.taxes | currencyFormat }}</td> <!-- Impuestos aplicados -->
+                    <td>{{ item.total | currencyFormat }}</td> <!-- Total del item -->
+                  </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Totales -->
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <p class="d-flex justify-content-between">
+              <span><strong>Subtotal:</strong></span>
+              <span>{{ invoice.subtotal | currencyFormat }}</span>
+            </p>
+            <p class="d-flex justify-content-between">
+              <span><strong>Impuestos:</strong></span>
+              <span>{{ invoice.taxes | currencyFormat }}</span>
+            </p>
+            <hr />
+            <p class="d-flex justify-content-between fs-5">
+              <span><strong>Total:</strong></span>
+              <span>{{ invoice.total | currencyFormat }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -15,6 +15,7 @@ import { InvoiceDetailComponent } from './modules/invoice/component/invoice-deta
 import { InvoiceComponent } from './modules/invoice/component/invoice/invoice.component';
 import { ProductImageUserComponent } from './modules/product/component/product-image-user/product-image-user.component';
 import { UserCategoryComponent } from './modules/product/component/user-category/user-category.component';
+import { CartComponent } from './modules/invoice/component/cart/cart.component';
 
 export const routes: Routes = [
     {
@@ -57,9 +58,8 @@ export const routes: Routes = [
         path: 'invoice/:id',
         component: InvoiceDetailComponent
     },
-    // {
-    //     path: 'secured',
-    //     component: SecuredComponent, 
-    //     // canActivate: [authenticationGuard]
-    // }
+    {
+        path: 'cart',
+        component: CartComponent
+    },
 ];

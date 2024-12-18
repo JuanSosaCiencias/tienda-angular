@@ -1,0 +1,55 @@
+.img-loading {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cart-list {
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  
+  .card {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+  }
+  
+  .card-body h5 {
+    font-size: 1.2rem;
+  }
+  
+  
+.controles{
+    padding-right: 2%;  
+    padding-top: 18%;   
+    padding-bottom: 1%;  
+}
+
+.card-title {
+    cursor: pointer; 
+    transition: all 0.3s ease; 
+}
+  
+.card-title:hover {
+    text-decoration: underline; 
+    color: var(--bs-info); 
+}
+
+.image-container {
+  height: 180px; 
+  width: 25%; 
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; 
+  border-radius: 10px; 
+}
+
+.image-container img {
+  max-height: 95%; 
+  max-width: 95%; 
+  object-fit: contain; 
+  border-radius: 10px; 
+}
+
+
+

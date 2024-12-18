@@ -1,4 +1,5 @@
 *.dbeaver*
 *.project*
-*api
+/api/config/dwf-api/application.properties
+
 /db
